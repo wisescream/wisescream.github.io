@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en" style="scroll-behavior: smooth;"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rayane Ibnatik - AI/ML Engineer</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#11d4b4",
+                        "primary-dark": "#0eb59a",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#10221f",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#162e2a",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem", 
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+                .material-symbols-outlined {
+                        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+                }
+                /* Consistent scrollbar styling copied from hero.html */
+                ::-webkit-scrollbar { width: 8px; }
+                ::-webkit-scrollbar-track { background: transparent; }
+                ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+                ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+                .dark ::-webkit-scrollbar-thumb { background: #334155; }
+                
+                /* Animation Keyframes */
+                @keyframes fadeInUp {
+                    from { opacity: 0; transform: translateY(30px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                @keyframes fadeInLeft {
+                    from { opacity: 0; transform: translateX(-30px); }
+                    to { opacity: 1; transform: translateX(0); }
+                }
+                @keyframes fadeInRight {
+                    from { opacity: 0; transform: translateX(30px); }
+                    to { opacity: 1; transform: translateX(0); }
+                }
+                @keyframes scaleIn {
+                    from { opacity: 0; transform: scale(0.9); }
+                    to { opacity: 1; transform: scale(1); }
+                }
+                
+                /* Animation Classes */
+                .animate-fade-in-up { animation: fadeInUp 0.6s ease-out forwards; opacity: 0; }
+                .animate-fade-in-left { animation: fadeInLeft 0.6s ease-out forwards; opacity: 0; }
+                .animate-fade-in-right { animation: fadeInRight 0.6s ease-out forwards; opacity: 0; }
+                .animate-scale-in { animation: scaleIn 0.5s ease-out forwards; opacity: 0; }
+                
+                /* Scroll-triggered animations */
+                .scroll-animate { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+                .scroll-animate.visible { opacity: 1; transform: translateY(0); }
+                
+                /* Staggered Delays */
+                .delay-100 { animation-delay: 0.1s; }
+                .delay-200 { animation-delay: 0.2s; }
+                .delay-300 { animation-delay: 0.3s; }
+                .delay-400 { animation-delay: 0.4s; }
+                .delay-500 { animation-delay: 0.5s; }
+                .delay-600 { animation-delay: 0.6s; }
+                
+                /* Hover Lift Effect */
+                .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+                .hover-lift:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+                .dark .hover-lift:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        </style>
+<script>
+  // Apply saved theme preference immediately to prevent flash
+  (function() {
+    const theme = localStorage.getItem('theme');
+    if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.remove('light');
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
+    }
+  })();
+  // Override toggle to save preference
+  function toggleDarkMode() {
+    document.documentElement.classList.toggle('dark');
+    document.documentElement.classList.toggle('light');
+    localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+  }
+</script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300 antialiased overflow-x-hidden">
+<!-- Unified Navbar copied from hero.html with working links -->
+<div class="fixed top-0 left-0 right-0 z-50 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+    <div class="layout-container flex justify-center">
+        <div class="flex flex-col flex-1 px-4 md:px-10 py-3 max-w-[1280px]">
+            <header class="flex w-full items-center justify-between whitespace-nowrap">
+                <div class="flex items-center gap-4 text-slate-900 dark:text-white">
+                    <div class="size-8 flex items-center justify-center rounded bg-primary/20 text-primary">
+                        <span class="material-symbols-outlined" style="font-size: 24px;">terminal</span>
+                    </div>
+                    <h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">RI</h2>
+                </div>
+                <div class="hidden md:flex flex-1 justify-end gap-8 items-center">
+                    <nav class="flex items-center gap-6 lg:gap-9">
+                        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="hero.html">Home</a>
+                        <a class="text-primary text-sm font-medium" aria-current="page" href="about.html">About</a>
+                        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="education.html">Education</a>
+                        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="experience.html">Experience</a>
+                        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="skills.html">Skills</a>
+                        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="mentorship.html">Mentorship</a>
+                        <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="contact.html">Contact</a>
+                    </nav>
+                    <button class="flex cursor-pointer items-center justify-center rounded-lg h-10 w-10 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-primary/20 dark:hover:bg-primary/20 transition-colors" onclick="toggleDarkMode()">
+                        <span class="material-symbols-outlined dark:hidden">dark_mode</span>
+                        <span class="material-symbols-outlined hidden dark:block">light_mode</span>
+                    </button>
+                </div>
+                <div class="flex md:hidden items-center gap-4">
+                    <button class="flex cursor-pointer items-center justify-center rounded-lg h-10 w-10 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white" onclick="toggleDarkMode()">
+                        <span class="material-symbols-outlined dark:hidden">dark_mode</span>
+                        <span class="material-symbols-outlined hidden dark:block">light_mode</span>
+                    </button>
+                    <button class="text-slate-900 dark:text-white" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
+            </header>
+            <!-- Mobile Menu -->
+            <nav id="mobile-menu" class="hidden flex-col gap-2 py-4 border-t border-slate-200 dark:border-slate-700 mt-3">
+                <a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm font-medium py-2 px-4" href="hero.html">Home</a>
+                <a class="text-primary text-sm font-medium py-2 px-4 rounded-lg bg-primary/10" href="about.html">About</a>
+                <a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm font-medium py-2 px-4" href="education.html">Education</a>
+                <a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm font-medium py-2 px-4" href="experience.html">Experience</a>
+                <a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm font-medium py-2 px-4" href="skills.html">Skills</a>
+                <a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm font-medium py-2 px-4" href="mentorship.html">Mentorship</a>
+                <a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm font-medium py-2 px-4" href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </div>
+    </div>
+<main class="flex-1 flex flex-col items-center w-full pb-20 pt-20">
+<!-- Hero Section -->
+<section class="w-full max-w-[1080px] px-6 py-12 md:py-20">
+<div class="flex flex-col-reverse md:flex-row gap-12 items-start md:items-center">
+<!-- Text Content -->
+<div class="flex-1 flex flex-col gap-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 w-fit">
+<span class="material-symbols-outlined text-primary text-[18px]">terminal</span>
+<span class="text-primary text-xs font-bold uppercase tracking-wide">AI Engineer &amp; Strategist</span>
+</div>
+<h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-slate-900 dark:text-white">
+                        Bridging the Gap Between <span class="text-primary">AI Innovation</span> and Secure Architecture
+                    </h1>
+<p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
+                        I engineer GenAI pipelines, RAG, LLM fine-tuning, RLHF, and enterprise-scale deployment. Ranked in the top 5% of global RLHF contributors, I build scalable AI systems with production-grade Docker/Kubernetes DevOps and bridge AI innovation with secure architecture.
+                    </p>
+<div class="flex flex-wrap gap-4 mt-2">
+<a href="contact.html" class="h-11 px-6 flex items-center justify-center rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-bold hover:opacity-90 transition-opacity">
+                            Let's Connect
+                        </a>
+<a href="experience.html" class="h-11 px-6 flex items-center justify-center rounded-lg border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                            View Projects
+                        </a>
+</div>
+</div>
+<!-- Image / Visual -->
+<div class="w-full md:w-[400px] flex justify-center md:justify-end relative group">
+<!-- Decorative elements -->
+<div class="absolute -top-4 -right-4 w-32 h-32 bg-primary/20 rounded-full blur-2xl"></div>
+<div class="absolute -bottom-4 -left-4 w-40 h-40 bg-purple-500/20 rounded-full blur-2xl"></div>
+<div class="relative w-full max-w-[320px] aspect-square rounded-2xl overflow-hidden shadow-xl ring-1 ring-slate-200 dark:ring-slate-800 bg-surface-light dark:bg-surface-dark">
+<img alt="Portrait of a professional man in a modern office setting" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Portrait of Rayane Ibnatik looking professional" src="https://remaining-yellow-q51emgmdia.edgeone.app/image_2026-01-06_213215710.png"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="w-full max-w-[1080px] px-6 pb-12">
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-800 shadow-sm hover:border-primary/50 transition-colors group">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">trending_up</span>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">RLHF Global Rank</p>
+</div>
+<p class="text-3xl font-bold text-slate-900 dark:text-white">Top 5%</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-800 shadow-sm hover:border-primary/50 transition-colors group">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">history</span>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Years Experience</p>
+</div>
+<p class="text-3xl font-bold text-slate-900 dark:text-white">2+</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-800 shadow-sm hover:border-primary/50 transition-colors group">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">groups</span>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Contributors Mentored</p>
+</div>
+<p class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white truncate">100+</p>
+</div>
+</div>
+</section>
+<!-- Main Content Split: Timeline & Skills -->
+<section class="w-full max-w-[1080px] px-6 py-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+<!-- Left Column: Experience Timeline -->
+<div class="lg:col-span-5 flex flex-col gap-8">
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">timeline</span>
+                        Experience Path
+                    </h3>
+<div class="relative pl-2">
+<!-- Connector Line -->
+<div class="absolute left-[19px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-primary/50 to-transparent"></div>
+<!-- Item 1 -->
+<div class="grid grid-cols-[40px_1fr] gap-x-4 mb-8 relative z-10">
+<div class="flex flex-col items-center pt-1">
+<div class="w-10 h-10 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-primary flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-primary text-[20px]">memory</span>
+</div>
+</div>
+<div class="flex flex-col pt-1">
+<h4 class="text-lg font-bold text-slate-900 dark:text-white">Freelance AI/ML Engineer</h4>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-2">Remote • July 2024 - Present</p>
+<p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                                    Specializing in GenAI pipelines with RAG, prompt chaining, and deploying HuggingFace Transformers in production.
+                                </p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="grid grid-cols-[40px_1fr] gap-x-4 mb-8 relative z-10">
+<div class="flex flex-col items-center pt-1">
+<div class="w-10 h-10 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-slate-300 dark:border-slate-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400 dark:text-slate-300 text-[20px]">security</span>
+</div>
+</div>
+<div class="flex flex-col pt-1">
+<h4 class="text-lg font-bold text-slate-900 dark:text-white">Pentester</h4>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-2">SEKERA • July - Sept 2024</p>
+<p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                                    Identified critical security risks through vulnerability assessments. Integrated automated testing workflows with Python.
+                                </p>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="grid grid-cols-[40px_1fr] gap-x-4 relative z-10">
+<div class="flex flex-col items-center pt-1">
+<div class="w-10 h-10 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-slate-300 dark:border-slate-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400 dark:text-slate-300 text-[20px]">school</span>
+</div>
+</div>
+<div class="flex flex-col pt-1">
+<h4 class="text-lg font-bold text-slate-900 dark:text-white">Cybersecurity Lab Engineer</h4>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-2">SEKERA • April 2023 - Jan 2024</p>
+<p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                                    Automated Red Team workflows with Caldera, Metasploit, and GPT4ALL agents. Integrated Kubeflow for ML orchestration.
+                                </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Skills Charts -->
+<div class="lg:col-span-7 flex flex-col gap-8">
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">bar_chart</span>
+                        Core Competencies
+                    </h3>
+<div class="rounded-2xl p-6 md:p-8 bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-end mb-6">
+<div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Proficiency Overview</p>
+<p class="text-2xl font-bold text-slate-900 dark:text-white">High Impact Skills</p>
+</div>
+<div class="hidden sm:flex gap-2 text-xs font-bold text-slate-400 dark:text-slate-500">
+<span>LEARNING</span>
+<span>•</span>
+<span>PRACTICING</span>
+<span>•</span>
+<span class="text-primary">MASTERING</span>
+</div>
+</div>
+<div class="grid gap-y-6">
+<!-- Skill 1 -->
+<div class="group">
+<div class="flex justify-between mb-2">
+<span class="text-sm font-bold text-slate-700 dark:text-slate-200">AI / Machine Learning</span>
+<span class="text-sm font-medium text-primary">95%</span>
+</div>
+<div class="h-3 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 95%"></div>
+</div>
+<p class="mt-1 text-xs text-slate-400 dark:text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity">PyTorch, TensorFlow, Hugging Face</p>
+</div>
+<!-- Skill 2 -->
+<div class="group">
+<div class="flex justify-between mb-2">
+<span class="text-sm font-bold text-slate-700 dark:text-slate-200">MLOps &amp; Infrastructure</span>
+<span class="text-sm font-medium text-primary">90%</span>
+</div>
+<div class="h-3 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 90%"></div>
+</div>
+<p class="mt-1 text-xs text-slate-400 dark:text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity">Docker, K8s, CI/CD, MLFlow</p>
+</div>
+<!-- Skill 3 -->
+<div class="group">
+<div class="flex justify-between mb-2">
+<span class="text-sm font-bold text-slate-700 dark:text-slate-200">Product Strategy</span>
+<span class="text-sm font-medium text-primary">70%</span>
+</div>
+<div class="h-3 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 70%"></div>
+</div>
+<p class="mt-1 text-xs text-slate-400 dark:text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity">Technical Leadership, Roadmap Planning</p>
+</div>
+<!-- Skill 4 -->
+<div class="group">
+<div class="flex justify-between mb-2">
+<span class="text-sm font-bold text-slate-700 dark:text-slate-200">Cybersecurity</span>
+<span class="text-sm font-medium text-primary">60%</span>
+</div>
+<div class="h-3 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 60%"></div>
+</div>
+<p class="mt-1 text-xs text-slate-400 dark:text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity">Adversarial ML, Data Privacy, Pentesting</p>
+</div>
+</div>
+</div>
+<!-- Additional Badges -->
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 rounded-full border border-slate-200 dark:border-slate-700 text-xs font-medium text-slate-500 dark:text-slate-400">Python</span>
+<span class="px-3 py-1 rounded-full border border-slate-200 dark:border-slate-700 text-xs font-medium text-slate-500 dark:text-slate-400">Rust</span>
+<span class="px-3 py-1 rounded-full border border-slate-200 dark:border-slate-700 text-xs font-medium text-slate-500 dark:text-slate-400">AWS</span>
+<span class="px-3 py-1 rounded-full border border-slate-200 dark:border-slate-700 text-xs font-medium text-slate-500 dark:text-slate-400">GCP</span>
+<span class="px-3 py-1 rounded-full border border-slate-200 dark:border-slate-700 text-xs font-medium text-slate-500 dark:text-slate-400">LangChain</span>
+<span class="px-3 py-1 rounded-full border border-slate-200 dark:border-slate-700 text-xs font-medium text-slate-500 dark:text-slate-400">OpenAI API</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Next Page Navigation -->
+<a href="education.html" class="w-full flex justify-center py-8 animate-bounce hover:opacity-80 transition-opacity">
+<div class="flex flex-col items-center gap-2 text-slate-400 dark:text-slate-500">
+<span class="text-xs font-medium uppercase tracking-widest">Next: Education</span>
+<span class="material-symbols-outlined">keyboard_arrow_down</span>
+</div>
+</a>
+</main>
+
+<script>
+// Scroll-triggered animations
+document.addEventListener('DOMContentLoaded', function() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    
+    document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
+    
+    // Smooth page transitions
+    document.querySelectorAll('a[href$=".html"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && !href.startsWith('http')) {
+                e.preventDefault();
+                document.body.style.opacity = '0';
+                document.body.style.transition = 'opacity 0.3s ease';
+                setTimeout(() => { window.location.href = href; }, 300);
+            }
+        });
+    });
+    
+    // Fade in on page load
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.4s ease';
+    requestAnimationFrame(() => { document.body.style.opacity = '1'; });
+});
+</script>
+</body></html>

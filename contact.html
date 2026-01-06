@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en" style="scroll-behavior: smooth;"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact - AI/ML Engineer Portfolio</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#11d4b4",
+              "background-light": "#f6f8f8",
+              "background-dark": "#10221f",
+              "surface-dark": "#162b28", // Slightly lighter tone for cards in dark mode
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"],
+              "body": ["Noto Sans", "sans-serif"],
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            boxShadow: {
+                'glow': '0 0 20px -5px rgba(17, 212, 180, 0.3)',
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar for textareas */
+        textarea::-webkit-scrollbar { width: 8px; }
+        textarea::-webkit-scrollbar-track { background: transparent; }
+        textarea::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        textarea::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .dark textarea::-webkit-scrollbar-thumb { background: #334155; }
+        /* Consistent body scrollbar as in hero.html */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .dark ::-webkit-scrollbar-thumb { background: #334155; }
+        
+        /* Animation Keyframes */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        /* Animation Classes */
+        .animate-fade-in-up { animation: fadeInUp 0.6s ease-out forwards; opacity: 0; }
+        .animate-fade-in-left { animation: fadeInLeft 0.6s ease-out forwards; opacity: 0; }
+        .animate-fade-in-right { animation: fadeInRight 0.6s ease-out forwards; opacity: 0; }
+        .animate-scale-in { animation: scaleIn 0.5s ease-out forwards; opacity: 0; }
+        
+        /* Scroll-triggered animations */
+        .scroll-animate { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .scroll-animate.visible { opacity: 1; transform: translateY(0); }
+        
+        /* Staggered Delays */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+        
+        /* Hover Lift Effect */
+        .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .hover-lift:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .dark .hover-lift:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    </style>
+<script>
+  // Apply saved theme preference immediately to prevent flash
+  (function() {
+    const theme = localStorage.getItem('theme');
+    if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.remove('light');
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
+    }
+  })();
+  // Override toggle to save preference
+  function toggleDarkMode() {
+    document.documentElement.classList.toggle('dark');
+    document.documentElement.classList.toggle('light');
+    localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+  }
+</script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-50 font-display transition-colors duration-300 min-h-screen flex flex-col">
+<!-- Unified Navbar copied from hero.html with working links -->
+<div class="fixed top-0 left-0 right-0 z-50 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+  <div class="layout-container flex justify-center">
+    <div class="flex flex-col flex-1 px-4 md:px-10 py-3 max-w-[1280px]">
+      <header class="flex w-full items-center justify-between whitespace-nowrap">
+        <div class="flex items-center gap-4 text-slate-900 dark:text-white">
+          <div class="size-8 flex items-center justify-center rounded bg-primary/20 text-primary">
+            <span class="material-symbols-outlined" style="font-size: 24px;">terminal</span>
+          </div>
+          <h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">RI</h2>
+        </div>
+        <div class="hidden md:flex flex-1 justify-end gap-8 items-center">
+          <nav class="flex items-center gap-6 lg:gap-9">
+            <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="hero.html">Home</a>
+            <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="about.html">About</a>
+            <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="education.html">Education</a>
+            <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="experience.html">Experience</a>
+            <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="skills.html">Skills</a>
+            <a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="mentorship.html">Mentorship</a>
+            <a class="text-primary text-sm font-medium" aria-current="page" href="contact.html">Contact</a>
+          </nav>
+          <button class="flex cursor-pointer items-center justify-center rounded-lg h-10 w-10 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-primary/20 dark:hover:bg-primary/20 transition-colors" onclick="toggleDarkMode()">
+            <span class="material-symbols-outlined dark:hidden">dark_mode</span>
+            <span class="material-symbols-outlined hidden dark:block">light_mode</span>
+          </button>
+        </div>
+        <div class="flex md:hidden items-center gap-4">
+          <button class="flex cursor-pointer items-center justify-center rounded-lg h-10 w-10 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white" onclick="toggleDarkMode()">
+            <span class="material-symbols-outlined dark:hidden">dark_mode</span>
+            <span class="material-symbols-outlined hidden dark:block">light_mode</span>
+          </button>
+          <button class="text-slate-900 dark:text-white" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+        </div>
+      </header>
+      <!-- Mobile Menu -->
+      <nav id="mobile-menu" class="hidden flex-col gap-2 py-4 border-t border-slate-200 dark:border-slate-700 mt-3">
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm font-medium py-2 px-4" href="hero.html">Home</a>
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm font-medium py-2 px-4" href="about.html">About</a>
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm font-medium py-2 px-4" href="education.html">Education</a>
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm font-medium py-2 px-4" href="experience.html">Experience</a>
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm font-medium py-2 px-4" href="skills.html">Skills</a>
+        <a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm font-medium py-2 px-4" href="mentorship.html">Mentorship</a>
+        <a class="text-primary text-sm font-medium py-2 px-4 rounded-lg bg-primary/10" href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </div>
+  </div>
+<div class="relative flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 overflow-hidden pt-20">
+<!-- Abstract Background Decorations representing Data/Nodes -->
+<div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="layout-container max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10">
+<!-- LEFT COLUMN: Introduction & Contact Form -->
+<div class="lg:col-span-7 flex flex-col gap-8">
+<!-- Section Header -->
+<div class="space-y-4">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium w-fit">
+<span class="material-symbols-outlined text-lg">sensors</span>
+<span>Open to Work</span>
+</div>
+<h2 class="text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
+                        Let's <span class="text-primary decoration-wavy underline-offset-4">Connect</span>
+</h2>
+<p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
+                        Open to collaborations in AI, Machine Learning, and Cybersecurity. I'm always interested in discussing data-driven solutions and secure architectures.
+                    </p>
+</div>
+<!-- Contact Form Card -->
+<div class="bg-white dark:bg-surface-dark rounded-xl shadow-lg border border-slate-200 dark:border-slate-800/50 p-6 sm:p-8">
+<form class="flex flex-col gap-6">
+<!-- Name & Email Row -->
+<div class="flex flex-col sm:flex-row gap-6">
+<label class="flex flex-col flex-1 gap-2">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Name</span>
+<input class="form-input w-full h-12 rounded-lg bg-background-light dark:bg-background-dark border border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-1 focus:ring-primary text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 transition-all px-4" placeholder="Jane Doe" type="text"/>
+</label>
+<label class="flex flex-col flex-1 gap-2">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Email</span>
+<input class="form-input w-full h-12 rounded-lg bg-background-light dark:bg-background-dark border border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-1 focus:ring-primary text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 transition-all px-4" placeholder="jane@example.com" type="email"/>
+</label>
+</div>
+<!-- Subject -->
+<label class="flex flex-col gap-2">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Subject</span>
+<input class="form-input w-full h-12 rounded-lg bg-background-light dark:bg-background-dark border border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-1 focus:ring-primary text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 transition-all px-4" placeholder="Project Inquiry" type="text"/>
+</label>
+<!-- Message -->
+<label class="flex flex-col gap-2">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Message</span>
+<textarea class="form-input w-full min-h-[160px] rounded-lg bg-background-light dark:bg-background-dark border border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-1 focus:ring-primary text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 transition-all p-4 resize-y" placeholder="Tell me about your project..."></textarea>
+</label>
+<!-- Submit Button -->
+<div class="pt-2">
+<button class="group relative w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-background-dark font-bold py-3 px-8 rounded-lg transition-all shadow-glow hover:shadow-lg hover:-translate-y-0.5" type="button">
+<span>Send Message</span>
+<span class="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1">send</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+<!-- RIGHT COLUMN: Info Sidebar -->
+<div class="lg:col-span-5 flex flex-col gap-6 lg:pt-8">
+<!-- Resume CTA Card -->
+<div class="bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 p-6 relative overflow-hidden group">
+<!-- Decor -->
+<div class="absolute right-[-20px] top-[-20px] text-primary/10 group-hover:text-primary/20 transition-colors">
+<span class="material-symbols-outlined text-[120px]">description</span>
+</div>
+<h3 class="text-xl font-bold mb-2 relative z-10">My Resume</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400 mb-6 relative z-10">
+                        Grab a comprehensive overview of my technical stack, certifications, and project history.
+                    </p>
+<button class="w-full relative z-10 flex items-center justify-center gap-2 py-3 px-4 rounded-lg border-2 border-primary text-primary font-bold hover:bg-primary hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined">download</span>
+                        Download CV
+                    </button>
+</div>
+<!-- Contact Details List -->
+<div class="bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 p-6 flex flex-col gap-6">
+<h3 class="text-lg font-bold border-b border-slate-100 dark:border-slate-800 pb-3">Contact Details</h3>
+<!-- Email Item -->
+<div class="flex items-start gap-4 group">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined">alternate_email</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Email</span>
+<a class="text-base font-medium hover:text-primary transition-colors" href="mailto:rayaneibn@gmail.com">rayaneibn@gmail.com</a>
+</div>
+</div>
+<!-- Location Item -->
+<div class="flex items-start gap-4 group">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Location</span>
+<span class="text-base font-medium">Casablanca, Morocco</span>
+</div>
+</div>
+<!-- Mini Map Visual -->
+<div class="mt-2 w-full h-32 rounded-lg overflow-hidden relative bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent z-10"></div>
+<img class="w-full h-full object-cover opacity-70 grayscale hover:grayscale-0 transition-all duration-500" data-alt="Abstract stylized map view of city streets with dark theme" data-location="Casablanca" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv1tobHNrrSMdqolSjypBStbOra0A69TFSHOSaJUBs7xXmPVHPrJOEvgDBZRp4r8KHfDZdlkbcB7Ahd_aD8j4bJ4Q8pteEKpKMkQC9nJiKzXJabeDgGK0UsUwY-kw6QnRHSwEqE39ow2Et1AYcAIq6VVN2aZXgmpFqTrd4SypV8GSWaZu-TsKGoQSBnXZrUnpQGW0E_aQXn_QOPb1uy10whiS5yqxQBD9XaKfhbvgNH0MPt__evfFZuYTqvibSulGqojyicXMqx2j3"/>
+<div class="absolute bottom-3 left-3 z-20 flex items-center gap-1 text-white text-xs font-bold">
+<span class="material-symbols-outlined text-primary text-sm">my_location</span>
+                            Remote / On-site
+                        </div>
+</div>
+</div>
+<!-- Social Links Grid -->
+<div class="grid grid-cols-2 gap-4">
+<a class="flex items-center justify-center gap-2 py-4 px-4 rounded-xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-800 hover:border-primary dark:hover:border-primary hover:text-primary transition-all group shadow-sm" href="https://github.com/wisescream" target="_blank">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">code</span>
+<span class="font-bold">GitHub</span>
+</a>
+<a class="flex items-center justify-center gap-2 py-4 px-4 rounded-xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-800 hover:border-primary dark:hover:border-primary hover:text-primary transition-all group shadow-sm" href="https://linkedin.com/in/rayane-ibnatik-215a44208" target="_blank">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">work</span>
+<span class="font-bold">LinkedIn</span>
+</a>
+<a class="flex items-center justify-center gap-2 py-4 px-4 rounded-xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-800 hover:border-primary dark:hover:border-primary hover:text-primary transition-all group shadow-sm" href="https://www.kaggle.com/wisescream" target="_blank">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">dataset</span>
+<span class="font-bold">Kaggle</span>
+</a>
+</div>
+</div>
+
+<!-- Back to Top Navigation -->
+<a href="hero.html" class="w-full flex justify-center py-8 animate-bounce hover:opacity-80 transition-opacity">
+<div class="flex flex-col items-center gap-2 text-slate-400 dark:text-slate-500">
+<span class="material-symbols-outlined">keyboard_arrow_up</span>
+<span class="text-xs font-medium uppercase tracking-widest">Back to Home</span>
+</div>
+</a>
+</div>
+
+<script>
+// Scroll-triggered animations
+document.addEventListener('DOMContentLoaded', function() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    
+    document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
+    
+    // Smooth page transitions
+    document.querySelectorAll('a[href$=".html"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && !href.startsWith('http')) {
+                e.preventDefault();
+                document.body.style.opacity = '0';
+                document.body.style.transition = 'opacity 0.3s ease';
+                setTimeout(() => { window.location.href = href; }, 300);
+            }
+        });
+    });
+    
+    // Fade in on page load
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.4s ease';
+    requestAnimationFrame(() => { document.body.style.opacity = '1'; });
+});
+</script>
+</body></html>
