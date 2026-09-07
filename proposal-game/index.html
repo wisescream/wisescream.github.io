@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Ce Soir — Reda</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <canvas id="scene-canvas"></canvas>
+
+  <!-- Zellige transition overlay -->
+  <div id="transition-overlay" class="hidden"></div>
+
+  <!-- Title screen -->
+  <div id="title-screen" class="screen">
+    <div class="zellige-frame"></div>
+    <h1>Ce Soir</h1>
+    <p class="subtitle">Casablanca, aujourd'hui</p>
+    <button id="btn-start" class="btn-primary">Commencer</button>
+  </div>
+
+  <!-- HUD: time indicator -->
+  <div id="time-hud" class="hidden">
+    <span id="time-text">18:40</span>
+  </div>
+
+  <!-- Dialogue box -->
+  <div id="dialogue-box" class="hidden">
+    <div id="dialogue-speaker"></div>
+    <div id="dialogue-text"></div>
+    <div id="dialogue-choices"></div>
+    <button id="dialogue-next" class="btn-small hidden">Continuer</button>
+  </div>
+
+  <!-- Generic interaction prompt -->
+  <div id="interact-prompt" class="hidden">Toucher pour interagir</div>
+
+  <!-- Continue / advance button (exploration acts) -->
+  <button id="btn-advance" class="btn-primary hidden">Avancer</button>
+
+  <!-- Act 1: outfit choice -->
+  <div id="outfit-picker" class="panel hidden">
+    <h2>Choisir une tenue</h2>
+    <div class="option-row" id="outfit-options"></div>
+  </div>
+
+  <!-- Act 2: shop choice -->
+  <div id="shop-panel" class="panel hidden">
+    <h2 id="shop-title"></h2>
+    <p id="shop-desc"></p>
+    <button id="btn-shop-buy" class="btn-primary">Acheter</button>
+  </div>
+
+  <!-- Act 3: billiards minigame -->
+  <div id="billiards-panel" class="panel hidden">
+    <h2>Billard</h2>
+    <div id="billiards-status">Coups restants : <span id="shots-left">3</span></div>
+    <div id="angle-row" class="hidden">
+      <label>Angle</label>
+      <input type="range" id="angle-slider" min="-45" max="45" value="0" />
+      <button id="btn-confirm-angle" class="btn-small">Valider l'angle</button>
+    </div>
+    <div id="power-row" class="hidden">
+      <div class="power-track"><div id="power-fill"></div></div>
+      <button id="btn-take-shot" class="btn-primary">Tirer !</button>
+    </div>
+    <button id="btn-start-aim" class="btn-primary">Viser</button>
+  </div>
+
+  <!-- Act 3: distraction QTE -->
+  <div id="distraction-panel" class="panel hidden">
+    <h2>Diversion</h2>
+    <p id="distraction-instructions">Touche au bon moment pour aider Karim à distraire le groupe !</p>
+    <div id="qte-track"><div id="qte-marker"></div><div id="qte-zone"></div></div>
+    <div id="qte-hits">Réussites : <span id="qte-hit-count">0</span> / 2</div>
+  </div>
+
+  <!-- Act 3: search zones -->
+  <div id="search-panel" class="panel hidden">
+    <h2>Fouiller discrètement</h2>
+    <p>Il te reste peu de temps avant que les amis ne se retournent.</p>
+    <div class="option-row" id="search-zones"></div>
+    <div id="search-timer-track"><div id="search-timer-fill"></div></div>
+  </div>
+
+  <!-- Act 4: flower choice -->
+  <div id="flower-panel" class="panel hidden">
+    <h2>Choisir les fleurs</h2>
+    <div class="option-row" id="flower-options"></div>
+  </div>
+
+  <!-- Act 4: candle placement -->
+  <div id="candle-panel" class="panel hidden">
+    <h2>Préparer le lieu</h2>
+    <p>Fais glisser chaque bougie vers un point marqué.</p>
+    <div id="candle-stage">
+      <div id="candle-tray"></div>
+    </div>
+    <div id="candle-progress">Bougies placées : <span id="candles-placed">0</span> / 6</div>
+  </div>
+
+  <!-- Flashback overlay -->
+  <div id="flashback-overlay" class="hidden">
+    <div id="flashback-text"></div>
+  </div>
+
+  <!-- Act 5: dialogue choice already uses dialogue-box -->
+
+  <!-- Act 6: final tap -->
+  <div id="proposal-tap" class="hidden">
+    <button id="btn-say-words" class="btn-primary btn-pulse">Dire les mots</button>
+  </div>
+
+  <!-- Polaroid ending screen -->
+  <div id="ending-screen" class="hidden">
+    <div id="polaroid">
+      <img id="polaroid-img" alt="Souvenir" />
+      <div id="polaroid-caption">Ce soir-là.</div>
+    </div>
+    <button id="btn-restart" class="btn-small">Rejouer</button>
+  </div>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
