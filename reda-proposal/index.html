@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Reda — La Promesse 💍</title>
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:#07111f;font-family:system-ui,-apple-system,Segoe UI,sans-serif;touch-action:none}
+#hud{position:fixed;left:10px;top:10px;right:10px;z-index:5;color:white;background:#0009;padding:10px 13px;border-radius:16px;backdrop-filter:blur(8px);pointer-events:none}
+#title{font-weight:800;font-size:17px;margin-bottom:4px}#objective{font-size:12px;opacity:.9}
+#mobileControls{position:fixed;inset:0;z-index:8;pointer-events:none}
+#joy{position:absolute;left:20px;bottom:25px;width:120px;height:120px;border-radius:50%;background:#0007;border:2px solid #fff3;pointer-events:auto;touch-action:none}
+#knob{position:absolute;left:35px;top:35px;width:50px;height:50px;border-radius:50%;background:#fff9;box-shadow:0 4px 20px #0008}
+#action{position:absolute;right:24px;bottom:42px;width:82px;height:82px;border-radius:50%;border:2px solid #fff8;font-size:30px;background:#ff5479;color:white;box-shadow:0 8px 25px #0008;pointer-events:auto;touch-action:manipulation}
+#prompt{position:fixed;left:50%;bottom:140px;transform:translateX(-50%);z-index:6;color:#fff;background:#000c;padding:11px 18px;border-radius:999px;display:none;font-size:13px;white-space:nowrap}
+#dialog{position:fixed;left:50%;bottom:135px;transform:translateX(-50%);z-index:7;width:calc(100% - 36px);max-width:620px;color:white;background:#101827ee;border:1px solid #ffffff22;padding:18px;border-radius:20px;display:none;box-shadow:0 20px 60px #0008;box-sizing:border-box}
+#dialog b{display:block;font-size:18px;margin-bottom:7px}
+#win{position:fixed;inset:0;z-index:20;display:none;place-items:center;background:#050914eF;color:white;text-align:center;padding:20px}
+#win .card{background:#121a2a;padding:30px 24px;border-radius:28px;max-width:520px;border:1px solid #ffffff22;box-shadow:0 25px 80px #0009}
+#win h1{font-size:40px;margin:0 0 8px}#win p{line-height:1.6;color:#dce4f5}
+button{border:0;border-radius:12px;padding:12px 18px;font-weight:700;cursor:pointer}canvas{display:block}
+@media (min-width:700px){#mobileControls{display:none}#prompt{bottom:28px}}
+</style>
+</head>
+<body>
+<div id="hud"><div id="title">💍 Reda — La Promesse</div><div id="objective">Trouve les 3 cœurs puis rejoins le kiosque au bord du lac.</div></div>
+<div id="prompt">Approche-toi du kiosque puis touche 💍</div><div id="dialog"></div>
+<div id="mobileControls"><div id="joy"><div id="knob"></div></div><button id="action" aria-label="Action">💍</button></div>
+<div id="win"><div class="card"><h1>💍 Oui !</h1><p>Le soleil descend sur le lac. Reda s'agenouille, sort la bague et lui demande de partager le reste de leur histoire ensemble.</p><p><b>Félicitations à Reda et à sa femme ❤️</b></p><button onclick="location.reload()">Rejouer</button></div></div>
+<script type="module">
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.166.1/build/three.module.js";
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x9bb9d4);scene.fog=new THREE.Fog(0x9bb9d4,28,95);
+const camera=new THREE.PerspectiveCamera(62,innerWidth/innerHeight,.1,150);camera.position.set(0,5,12);
+const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.7));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;renderer.outputColorSpace=THREE.SRGBColorSpace;document.body.appendChild(renderer.domElement);
+scene.add(new THREE.HemisphereLight(0xffe9c7,0x30445d,2.2));const sun=new THREE.DirectionalLight(0xffd2a0,3.5);sun.position.set(-20,30,10);sun.castShadow=true;scene.add(sun);
+const ground=new THREE.Mesh(new THREE.PlaneGeometry(120,120),new THREE.MeshStandardMaterial({color:0x55765a,roughness:1}));ground.rotation.x=-Math.PI/2;ground.receiveShadow=true;scene.add(ground);
+const lake=new THREE.Mesh(new THREE.CircleGeometry(24,64),new THREE.MeshStandardMaterial({color:0x4f91ad,roughness:.15}));lake.rotation.x=-Math.PI/2;lake.position.set(8,.025,-18);scene.add(lake);
+function box(w,h,d,color,x,y,z){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),new THREE.MeshStandardMaterial({color}));m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;scene.add(m);return m}
+function tree(x,z,s=1){box(.45*s,2*s,.45*s,0x704a2c,x,1*s,z);const c=new THREE.Mesh(new THREE.SphereGeometry(1.65*s,12,10),new THREE.MeshStandardMaterial({color:0x355d3b}));c.position.set(x,2.8*s,z);c.castShadow=true;scene.add(c)}
+for(let i=0;i<28;i++){const a=i*.73,r=22+(i%5)*5;tree(Math.cos(a)*r,Math.sin(a)*r-5,.7+(i%3)*.18)}
+const path=new THREE.Mesh(new THREE.PlaneGeometry(6,52),new THREE.MeshStandardMaterial({color:0xb69b72}));path.rotation.x=-Math.PI/2;path.position.set(0,.04,-10);scene.add(path);
+box(8,.35,6,0x8a6040,8,.2,-17);const roof=new THREE.Mesh(new THREE.ConeGeometry(5.2,2.6,4),new THREE.MeshStandardMaterial({color:0x6d2f35}));roof.position.set(8,5,-17);roof.rotation.y=Math.PI/4;roof.castShadow=true;scene.add(roof);[[5,-19],[11,-19],[5,-15],[11,-15]].forEach(([x,z])=>box(.3,5,.3,0x6b4733,x,2.5,z));
+// Stylized Reda avatar
+const reda=new THREE.Group();reda.position.set(0,0,8);scene.add(reda);const body=new THREE.Mesh(new THREE.CapsuleGeometry(.85,2,8,16),new THREE.MeshStandardMaterial({color:0xe7ddc8}));body.position.y=1.8;body.castShadow=true;reda.add(body);const head=new THREE.Mesh(new THREE.SphereGeometry(.72,24,16),new THREE.MeshStandardMaterial({color:0xc98e68}));head.position.y=3.55;head.castShadow=true;reda.add(head);const hair=new THREE.Mesh(new THREE.SphereGeometry(.75,24,12,0,Math.PI*2,0,Math.PI*.52),new THREE.MeshStandardMaterial({color:0x17161a}));hair.position.y=3.86;hair.castShadow=true;reda.add(hair);
+const hearts=[];function makeHeart(x,z){const g=new THREE.Group();g.position.set(x,1.25,z);const mat=new THREE.MeshStandardMaterial({color:0xff5b7d,emissive:0x5a1028,emissiveIntensity:.7});const a=new THREE.Mesh(new THREE.SphereGeometry(.35,16,12),mat),b=a.clone();a.position.set(-.22,.12,0);b.position.set(.22,.12,0);const stem=new THREE.Mesh(new THREE.ConeGeometry(.43,.8,16),mat);stem.position.set(0,-.18,0);stem.rotation.z=Math.PI;g.add(a,b,stem);scene.add(g);hearts.push(g)}
+makeHeart(-4,2);makeHeart(5,-5);makeHeart(-7,-12);
+const keys={};let joyX=0,joyZ=0,joyActive=false;const joy=document.querySelector('#joy'),knob=document.querySelector('#knob');function joyMove(e){const r=joy.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;let dx=e.clientX-cx,dy=e.clientY-cy,max=42,len=Math.hypot(dx,dy)||1;if(len>max){dx=dx/len*max;dy=dy/len*max}knob.style.transform=`translate(${dx}px,${dy}px)`;joyX=dx/max;joyZ=dy/max}joy.addEventListener('pointerdown',e=>{joyActive=true;joy.setPointerCapture(e.pointerId);joyMove(e)});joy.addEventListener('pointermove',e=>{if(joyActive)joyMove(e)});function joyEnd(){joyActive=false;joyX=joyZ=0;knob.style.transform='translate(0,0)'}joy.addEventListener('pointerup',joyEnd);joy.addEventListener('pointercancel',joyEnd);
+addEventListener('keydown',e=>{keys[e.key.toLowerCase()]=true;if(e.key.toLowerCase()==='e')interact()});addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);document.querySelector('#action').addEventListener('click',interact);
+let collected=0,done=false;const objective=document.querySelector('#objective'),prompt=document.querySelector('#prompt'),dialog=document.querySelector('#dialog');function interact(){if(done)return;const target=new THREE.Vector3(8,0,-17);if(reda.position.distanceTo(target)<4&&collected===3){done=true;dialog.style.display='block';dialog.innerHTML='<b>Reda</b> « Depuis le jour où nos chemins se sont croisés, je veux continuer chaque aventure avec toi. Est-ce que tu veux m’épouser ? 💍 »';setTimeout(()=>document.querySelector('#win').style.display='grid',4500)}}
+function update(){const speed=.105,dir=new THREE.Vector3();if(keys.w||keys.arrowup)dir.z-=1;if(keys.s||keys.arrowdown)dir.z+=1;if(keys.a||keys.arrowleft)dir.x-=1;if(keys.d||keys.arrowright)dir.x+=1;dir.x+=joyX;dir.z+=joyZ;if(dir.length()){dir.normalize();reda.position.addScaledVector(dir,speed);reda.position.x=THREE.MathUtils.clamp(reda.position.x,-15,15);reda.position.z=THREE.MathUtils.clamp(reda.position.z,-25,18)}hearts.forEach((h,i)=>{h.rotation.y+=.025;h.position.y=1.25+Math.sin(performance.now()*.003+i)*.18;if(h.visible&&reda.position.distanceTo(h.position)<1.5){h.visible=false;collected++;objective.textContent=`Cœurs trouvés : ${collected}/3 — ${collected===3?'Rejoins le kiosque au bord du lac.':'Continue à explorer le parc.'}`}});const nearK=reda.position.distanceTo(new THREE.Vector3(8,0,-17))<4;prompt.style.display=nearK&&collected===3?'block':'none';camera.position.lerp(reda.position.clone().add(new THREE.Vector3(0,5.2,9)),.075);camera.lookAt(reda.position.clone().add(new THREE.Vector3(0,2.4,0)))}
+function animate(){requestAnimationFrame(animate);update();renderer.render(scene,camera)}animate();addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
+</script></body></html>
